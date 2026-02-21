@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Living with Kitchin 🐱</title>
+  <link rel="icon" type="image/png" href="favicon.png">
+  <meta property="og:title" content="Living with Kitchin">
+  <meta property="og:description" content="A Cat-Sitter's Guide — from Conor & Rach 🐱">
+  <meta property="og:image" content="https://dotconor.github.io/kitchin-guide/og-share.png">
+  <meta property="og:url" content="https://dotconor.github.io/kitchin-guide/">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #FFF8F0;
+      --card: #FFFFFF;
+      --accent: #E8735A;
+      --accent-light: #FFF0EC;
+      --accent-dark: #D4563E;
+      --text: #2D2A26;
+      --text-muted: #7A756E;
+      --border: #F0EBE4;
+      --emergency: #DC3545;
+      --emergency-bg: #FFF5F5;
+      --blue: #4A90D9;
+      --blue-light: #EBF3FC;
+      --green: #4CAF50;
+      --green-light: #E8F5E9;
+      --purple: #9C6ADE;
+      --purple-light: #F3E8FF;
+      --shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+      --shadow-lg: 0 4px 12px rgba(0,0,0,0.08);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 24px 20px 80px;
+    }
+
+    /* Hero */
+    .hero {
+      text-align: center;
+      padding: 48px 0 32px;
+    }
+
+    .hero-img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid var(--accent);
+      margin-bottom: 16px;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .hero-emoji {
+      font-size: 72px;
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.4rem;
+      font-weight: 900;
+      margin-bottom: 6px;
+    }
+
+    .hero .subtitle {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    .hero .subtitle strong {
+      color: var(--accent);
+    }
+
+    /* Alert banner */
+    .alert {
+      background: var(--accent-light);
+      border: 1.5px solid var(--accent);
+      border-radius: 12px;
+      padding: 16px 20px;
+      margin: 24px 0;
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+
+    .alert-icon { font-size: 1.4rem; flex-shrink: 0; }
+    .alert-text { font-size: 0.9rem; font-weight: 500; }
+    .alert-text strong { color: var(--accent); }
+
+    /* Sections */
+    .section {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
+      margin-bottom: 16px;
+      box-shadow: var(--shadow);
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .section-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      flex-shrink: 0;
+    }
+
+    .section-header h2 {
+      font-size: 1.15rem;
+      font-weight: 700;
+    }
+
+    .icon-access { background: var(--blue-light); }
+    .icon-food { background: #FFF3E0; }
+    .icon-litter { background: #F3E5F5; }
+    .icon-smart { background: var(--green-light); }
+    .icon-tv { background: var(--purple-light); }
+    .icon-heat { background: #FFF8E1; }
+    .icon-trash { background: #ECEFF1; }
+    .icon-vet { background: var(--blue-light); }
+    .icon-emergency { background: #FFEBEE; }
+
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    li {
+      padding: 8px 0;
+      padding-left: 28px;
+      position: relative;
+      font-size: 0.93rem;
+    }
+
+    li::before {
+      content: '';
+      position: absolute;
+      left: 8px;
+      top: 16px;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
+    li.sub {
+      padding-left: 48px;
+      color: var(--text-muted);
+      font-size: 0.88rem;
+    }
+
+    li.sub::before {
+      left: 28px;
+      width: 5px;
+      height: 5px;
+      background: var(--border);
+      border: 1.5px solid var(--text-muted);
+    }
+
+    .time-badge {
+      display: inline-block;
+      background: var(--accent);
+      color: white;
+      font-size: 0.78rem;
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: 20px;
+      margin-bottom: 12px;
+    }
+
+    /* QR / Access card */
+    .access-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .access-card {
+      background: #F8F9FA;
+      border-radius: 12px;
+      padding: 16px;
+      text-align: center;
+    }
+
+    .access-card .label {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 6px;
+    }
+
+    .access-card .value {
+      font-size: 1.3rem;
+      font-weight: 700;
+      font-family: 'SF Mono', 'Fira Code', monospace;
+      letter-spacing: 2px;
+    }
+
+    .access-card.full {
+      grid-column: 1 / -1;
+    }
+
+    .qr-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--blue);
+      color: white;
+      text-decoration: none;
+      padding: 10px 20px;
+      border-radius: 10px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-top: 8px;
+      transition: opacity 0.2s;
+    }
+
+    .qr-link:hover { opacity: 0.9; }
+
+    /* Smart Home tiles */
+    .tiles-scroll {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      padding: 4px 0 12px;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+
+    .tiles-scroll::-webkit-scrollbar { display: none; }
+
+    .tile {
+      flex-shrink: 0;
+      background: #F8F9FA;
+      border-radius: 12px;
+      padding: 14px 16px;
+      min-width: 120px;
+      text-align: center;
+      border: 1px solid var(--border);
+      transition: background 0.2s;
+    }
+
+    .tile:hover { background: var(--green-light); }
+
+    .tile-icon {
+      font-size: 1.6rem;
+      margin-bottom: 6px;
+      display: block;
+    }
+
+    .tile-name {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .tile-sub {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+    }
+
+    /* Voice command styling */
+    .voice-cmd {
+      background: #F8F9FA;
+      border-radius: 8px;
+      padding: 10px 14px;
+      margin: 6px 0;
+      font-size: 0.88rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .voice-cmd .mic { color: var(--green); font-size: 1.1rem; }
+
+    .note {
+      font-size: 0.83rem;
+      color: var(--text-muted);
+      font-style: italic;
+      margin-top: 8px;
+      padding-left: 4px;
+    }
+
+    /* Emergency */
+    .emergency {
+      background: var(--emergency-bg);
+      border-color: #FECDD3;
+    }
+
+    .emergency .section-header h2 { color: var(--emergency); }
+
+    .contact {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+      gap: 12px;
+    }
+
+    .contact:last-child { border-bottom: none; }
+
+    .contact-name {
+      font-weight: 600;
+      font-size: 0.93rem;
+    }
+
+    .contact-role {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .contact-phone {
+      background: var(--emergency);
+      color: white;
+      text-decoration: none;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .contact-phone:hover { opacity: 0.9; }
+
+    /* Vet */
+    .vet-info {
+      margin-bottom: 12px;
+    }
+
+    .vet-name {
+      font-weight: 700;
+      font-size: 1rem;
+      margin-bottom: 2px;
+    }
+
+    .vet-address {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+    }
+
+    .vet-contacts {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .vet-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: var(--blue);
+      color: white;
+      text-decoration: none;
+      padding: 7px 14px;
+      border-radius: 8px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      transition: opacity 0.2s;
+    }
+
+    .vet-btn:hover { opacity: 0.9; }
+    .vet-btn.text { background: var(--green); }
+
+    .map-embed {
+      width: 100%;
+      height: 180px;
+      border: none;
+      border-radius: 12px;
+      margin-top: 12px;
+    }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      padding: 32px 0 16px;
+      color: var(--text-muted);
+      font-size: 0.8rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 480px) {
+      .hero h1 { font-size: 1.9rem; }
+      .container { padding: 16px 16px 60px; }
+      .section { padding: 20px; }
+      .access-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- Hero -->
+  <div class="hero">
+    <img src="banner.png" alt="Living with Kitchin" style="width:100%; border-radius:16px; margin-bottom:16px; box-shadow: var(--shadow-lg);">
+    <p class="subtitle">A guide for <strong>Georgia</strong> — from Conor & Rach 💛</p>
+  </div>
+
+  <!-- Escape artist warning -->
+  <div class="alert">
+    <img src="icon-escape.png" alt="" style="width:48px; height:48px; border-radius:8px; flex-shrink:0;">
+    <div class="alert-text">
+      <strong>Kitchin is a daring escape artist!</strong><br>
+      Always watch the door closely when entering & leaving. We leave treats on the other side of the apartment to distract her — they're on the bookshelf in the hall.
+    </div>
+  </div>
+
+  <!-- Building Access -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon icon-access">🏢</div>
+      <h2>Getting In</h2>
+    </div>
+    <ul>
+      <li>We're on <strong>floor 4</strong> at 156 Kent Street</li>
+      <li>Scan the QR code below at the front door</li>
+      <li>There's a key in a <strong>lockbox by the stairs</strong></li>
+      <li><strong>Phoebe</strong> (next door) also has a key</li>
+    </ul>
+    <div class="access-grid">
+      <div class="access-card full" style="padding:16px;">
+        <div class="label">📱 Door code, lockbox code & QR sent separately via text</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WiFi -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon icon-access">📶</div>
+      <h2>WiFi</h2>
+    </div>
+    <div class="access-grid">
+      <div class="access-card full" style="padding:16px;">
+        <div class="label">📱 WiFi network & password sent separately via text</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Feeding -->
+  <div class="section">
+    <div class="section-header">
+      <img src="icon-food.png" alt="" style="width:40px; height:40px; border-radius:10px;">
+      <h2>Feeding</h2>
+    </div>
+    <span class="time-badge">Breakfast @ 8 AM · Dinner @ 8 PM</span>
+    <ul>
+      <li>Wash cat food bowl & fill with cat food</li>
+      <li class="sub">1 full pouch (on the kitchen counter)</li>
+      <li class="sub">We also leave out a little dried food to fatten her up</li>
+      <li>Water fountain is continually refreshed — no need to change</li>
+    </ul>
+  </div>
+
+  <!-- Litter -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon icon-litter">🧹</div>
+      <h2>Litter</h2>
+    </div>
+    <ul>
+      <li>Scoop clumps into the little plastic bags above the litter box, then toss in the kitchen garbage</li>
+      <li>Poop can go in the toilet (she doesn't cover it 😾)</li>
+      <li>We changed the litter before we left — should last the whole trip</li>
+      <li>Extra litter is in the coat closet if needed</li>
+    </ul>
+  </div>
+
+  <!-- Smart Home -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon icon-smart">🏠</div>
+      <h2>Smart Home</h2>
+    </div>
+    <p style="font-size:0.9rem; color:var(--text-muted); margin-bottom:16px;">Everything is controlled via <strong>Google Home</strong>. Just say <strong>"Ok Google"</strong> followed by a command. Light switches are also on the walls!</p>
+
+    <h3 style="font-size:0.85rem; text-transform:uppercase; letter-spacing:0.5px; color:var(--text-muted); margin-bottom:8px;">💡 Lights</h3>
+    <div class="tiles-scroll">
+      <div class="tile"><span class="tile-icon">💡</span><div class="tile-name">Kitchen</div></div>
+      <div class="tile"><span class="tile-icon">💡</span><div class="tile-name">Living Room</div><div class="tile-sub">Accent</div></div>
+      <div class="tile"><span class="tile-icon">💡</span><div class="tile-name">Hallway</div></div>
+      <div class="tile"><span class="tile-icon">💡</span><div class="tile-name">Master Bedroom</div></div>
+      <div class="tile"><span class="tile-icon">💡</span><div class="tile-name">Master Bath</div></div>
+      <div class="tile"><span class="tile-icon">💡</span><div class="tile-name">Guest Bath</div></div>
+    </div>
+    <div class="voice-cmd"><span class="mic">🎙</span> "Turn on the <strong>[room]</strong> lights"</div>
+
+    <h3 style="font-size:0.85rem; text-transform:uppercase; letter-spacing:0.5px; color:var(--text-muted); margin: 16px 0 8px;">🌡️ Heat (Split Units)</h3>
+    <div class="tiles-scroll">
+      <div class="tile"><span class="tile-icon">🌡️</span><div class="tile-name">Kitchen</div></div>
+      <div class="tile"><span class="tile-icon">🌡️</span><div class="tile-name">Living Room</div></div>
+      <div class="tile"><span class="tile-icon">🌡️</span><div class="tile-name">Master Bedroom</div></div>
+      <div class="tile"><span class="tile-icon">🌡️</span><div class="tile-name">Office</div></div>
+    </div>
+    <div class="voice-cmd"><span class="mic">🎙</span> "Turn on the <strong>[room]</strong> heat"</div>
+
+    <h3 style="font-size:0.85rem; text-transform:uppercase; letter-spacing:0.5px; color:var(--text-muted); margin: 16px 0 8px;">🪟 Smart Blinds</h3>
+    <div class="tiles-scroll">
+      <div class="tile"><span class="tile-icon">🪟</span><div class="tile-name">Living Room</div><div class="tile-sub">5 blinds</div></div>
+      <div class="tile"><span class="tile-icon">🪟</span><div class="tile-name">Master Bedroom</div><div class="tile-sub">3 blinds</div></div>
+      <div class="tile"><span class="tile-icon">🪟</span><div class="tile-name">Master Bath</div></div>
+      <div class="tile"><span class="tile-icon">🪟</span><div class="tile-name">Luca's Room</div></div>
+    </div>
+    <div class="voice-cmd"><span class="mic">🎙</span> "Open the <strong>[room]</strong> blinds"</div>
+    <div class="voice-cmd"><span class="mic">🎙</span> "Close the <strong>[room]</strong> blinds"</div>
+  </div>
+
+  <!-- Entertainment -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon icon-tv">📺</div>
+      <h2>Entertainment</h2>
+    </div>
+    <ul>
+      <li><strong>Bedroom TV</strong> — use the Apple TV remote. All streaming services are signed in!</li>
+      <li><strong>Living Room TV</strong> — not currently signed into streaming, but you're welcome to sign in to your own accounts</li>
+    </ul>
+  </div>
+
+  <!-- Trash -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon icon-trash">🗑️</div>
+      <h2>Trash & Recycling</h2>
+    </div>
+    <ul>
+      <li>Trash is to the left of the fridge</li>
+      <li>Recycling is right next to it</li>
+    </ul>
+  </div>
+
+  <!-- Vet -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon icon-vet">🩺</div>
+      <h2>Kitchin's Vet</h2>
+    </div>
+    <div class="vet-info">
+      <div class="vet-name">Veterinary Care Group — Greenpoint</div>
+      <div class="vet-address">1059 Manhattan Avenue, Brooklyn, NY 11222</div>
+      <div class="vet-contacts">
+        <a href="tel:+13479054664" class="vet-btn">📞 Call</a>
+        <a href="sms:+13479707056" class="vet-btn text">💬 Text</a>
+      </div>
+    </div>
+    <iframe
+      class="map-embed"
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+      src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&q=Veterinary+Care+Group+Greenpoint+1059+Manhattan+Ave+Brooklyn+NY&zoom=15"
+      allowfullscreen>
+    </iframe>
+  </div>
+
+  <!-- Emergency -->
+  <div class="section emergency">
+    <div class="section-header">
+      <div class="section-icon icon-emergency">🆘</div>
+      <h2>Emergency Contacts</h2>
+    </div>
+    <div class="contact">
+      <div>
+        <div class="contact-name">Phoebe</div>
+        <div class="contact-role">Next door — has a key</div>
+      </div>
+      <a href="tel:+19176848867" class="contact-phone">📞 917-684-8867</a>
+    </div>
+    <div class="contact">
+      <div>
+        <div class="contact-name">Robert Lerch</div>
+        <div class="contact-role">Emergency contact</div>
+      </div>
+      <a href="tel:+19177219257" class="contact-phone">📞 917-721-9257</a>
+    </div>
+  </div>
+
+  <div class="footer">
+    Made with 🥯 by Conor, Rach & Bialy · 2026
+  </div>
+
+</div>
+
+</body>
+</html>
